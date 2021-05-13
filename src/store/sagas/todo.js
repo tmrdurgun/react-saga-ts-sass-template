@@ -16,7 +16,7 @@ import {
 import * as todoActions from '../actions/todo';
 
 function* getTodos() {
-    const result = yield call(request, GET_TODOS_URL, 'get', false, true);
+    const result = yield call(request, GET_TODOS_URL, 'get', false);
 
     try {
         if(result) {
