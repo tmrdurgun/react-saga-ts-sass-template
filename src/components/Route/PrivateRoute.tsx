@@ -1,7 +1,9 @@
 import React from 'react';
 import { Redirect, Route } from 'react-router-dom';
 
-class PrivateRoute extends React.Component {
+import { IPrivateRoute } from './IPrivateRoute';
+
+class PrivateRoute extends React.Component <IPrivateRoute> {
   render() {
     const { rest } = this.props;
     const Component = this.props.component;

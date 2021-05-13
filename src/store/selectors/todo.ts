@@ -1,6 +1,6 @@
 import { createSelector } from 'reselect';
 
-const domain = state => state;
+const domain = (state: any) => state;
 
 export const selectTodos = () => createSelector(
     domain,

@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { bindActionCreators } from 'redux';
+import { AnyAction, bindActionCreators, Dispatch } from 'redux';
 import { connect } from 'react-redux';
 
 import {
@@ -10,10 +10,12 @@ import { createStructuredSelector } from 'reselect';
 
 import {
   selectTodos,
-} from '../../store/selectors/';
+} from '../../store/selectors';
 
-class Todo extends Component {
-  constructor(props) {
+import { ITodo } from './ITodo';
+
+class Todo extends Component <ITodo> {
+  constructor(props: ITodo) {
     super(props);
 
     this.state = {};
@@ -39,7 +41,7 @@ const mapStateToProps = createStructuredSelector({
   todos: selectTodos(),
 });
 
-const mapDispatchToProps = dispatch => (
+const mapDispatchToProps = (dispatch: Dispatch<AnyAction>) => (
   (
     bindActionCreators({
       getTodos,

@@ -1,17 +1,23 @@
 import React, { Component, Suspense } from 'react';
 import { createStructuredSelector } from 'reselect';
-import { bindActionCreators } from 'redux';
+import { AnyAction, bindActionCreators, Dispatch } from 'redux';
 import { connect } from 'react-redux';
 import { Container, Row, Col } from 'react-bootstrap';
 import { Redirect, Route, Switch } from 'react-router-dom';
 
 import routes from '../../routes';
 
-class Layout extends Component {
-  constructor(props) {
+import { ILayoutProps, IDispatchProps, IState } from './ILayout';
+
+class Layout extends Component<ILayoutProps, IState> {
+  routesList: any[];
+
+  constructor(props: ILayoutProps) {
     super(props);
 
-    this.state = {};
+    this.state = {
+      name: 'Tmr'
+    };
 
     this.routesList = routes;
   }
@@ -28,7 +34,6 @@ class Layout extends Component {
                             key={idx}
                             path={route.path}
                             exact={route.exact}
-                            name={route.name}
                             render={(props) => (
                               <route.component {...props} {...this.props} />
                             )}
@@ -46,7 +51,7 @@ class Layout extends Component {
 
 const mapStateToProps = createStructuredSelector({ });
 
-const mapDispatchToProps = (dispatch) => (
+const mapDispatchToProps = (dispatch: Dispatch<AnyAction>) => (
   (
     bindActionCreators({
     }, dispatch)
